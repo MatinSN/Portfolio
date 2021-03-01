@@ -1,14 +1,13 @@
 
 <!doctype html>
 <html lang="en">
-  {% load static %}
   <head>
-    <meta charset="utf-8">
+    {% load static %}    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <title>Matin Soltany</title>
+    <title>Album example · Bootstrap v5.0</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
@@ -43,66 +42,46 @@
   <body>
     
 <header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home'%}">Matin Soltany</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="{% static 'resume.pdf'%}">Resume</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="{%url 'blogs'%}">Blog</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home'%}">Matin Soltany</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="{% static 'resume.pdf'%}">Resume</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="{%url 'blogs'%}">Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 </header>
 
 <main>
-
-  <section class="py-5 text-center container">
-      <div class="container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Welcome!</h1>
-        <p class="lead text-muted">How doth a little crocodile improve his shinning tale</p>
-        <p>
-          <a href="maleto:matinsoltany2000@gamil.com" class="btn btn-primary my-2">Email me</a>
-        </p>
-      </div>
-      
-    </div>
-    <img src="{% static 'job.jpeg' %}" />
-</div>
-  </section>
-
-  <div class="album py-5 bg-light">
     <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {%for job in jobs.all%}
-        <div class="col-md-4">
-          <div class="card shadow-sm">
-            
-             <img class="card-image-top"  src="{{job.image.url}}" />
-            <div class="card-body">
-              <p class="card-text">{{job.summary}}</p>
-            </div>
-          </div>
-        </div>
-          {% endfor %}
-      </div>
+        <h1 class="text-center pt-2"> Welcome to Matin's blog</h1>
+        <br>
+        <h2>Latest Posts</h2>
+        <hr>
+        {% for blog in blogs.all %}
+          <a href="{%url 'detail' blog.id %}"><h3>{{blog.title}}</h3></a>
+          <br>
+          <p>{{blog.pub_date_pretty}}</p>
+          <br>
+          <img class=".img-fluid" height="200" width=200 src="{{blog.image.url}}" />
+          <br>
+          <body>{{blog.summary}}</body>
+        <hr>
+        {% endfor %}
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted py-5">
